@@ -1,4 +1,14 @@
 # Hybride Cloud Project - "Hello World" Docker CI/CD
+
+Opdracht : Maak een complete deployment waarin je een Azure VM en ESXi VM combineert en je een hybrid cloud situatie maakt. Gebruik de stof van de afgelopen lessen. De deployment is compleet geautomatiseerd, inclusief het aanmaken van VM’s en andere resources in Azure.
+
+Je maakt op beide omgeving een gebruiker ‘testuser’ aan, via Ansible of via Terraform. De testuser kan inloggen van de ESXI VM naar de Azure VM, het plaatsen van de benodigde SSH keys is geautomatiseerd.
+
+Op beide systemen draait Docker (wat je geïnstalleerd hebt via een zelfgemaakte ansible-galaxy role) een zelfgemaakte en via CI/CD gebouwde “Hello World” Docker container.
+
+Deze opdracht lever je in samen met de rest van alle opdrachten op uiterlijk de einddatum van het hele vak zoals deze in Brightspace staat.
+
+
 ## Bron
 https://chatgpt.com/share/68383be1-0c0c-8002-b06e-7658f68adc0a
 
