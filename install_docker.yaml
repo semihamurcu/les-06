@@ -1,0 +1,7 @@
+---
+- name: Install Docker op beide VM's
+  hosts: all
+  become: true
+
+  roles:
+    - semihamurcu.docker
