@@ -8,17 +8,44 @@ resource "esxi_guest" "LAB6VM" {
     virtual_network = "VM Network"          
   }
 
-
-#Azure
-
-  guestinfo = {
+guestinfo = {
     "metadata"          = base64encode(templatefile("${path.module}/metadata.yaml.tftpl", { hostname = "LAB6VM" }))
     "metadata.encoding" = "base64"
     "userdata"          = filebase64("${path.module}/userdata.yaml")
     "userdata.encoding" = "base64"
   }
+
+ provisioner "file" {
+    source = "/home/student/.ssh/devhostnieuw.pub"
+    destination = "/home/testuser/devhostnieuw.pub"
+
+    connection {
+      type        = "ssh"
+      user        = "testuser"
+      private_key = file("~/.ssh/devhostnieuw")
+      host        = self.ip_address
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p /home/testuser/.ssh",
+      "cat /home/testuser/devhostnieuw.pub >> /home/testuser/.ssh/authorized_keys",
+      "chmod 600 /home/testuser/.ssh/authorized_keys",
+      "rm /home/testuser/devhostnieuw.pub",
+      "chown -R testuser:testuser /home/testuser/.ssh"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "testuser"
+      private_key = file("~/.ssh/devhostnieuw")
+      host        = self.ip_address
+    }
+  }
 }
 
+# Azure
 
 # Virtual Network
 resource "azurerm_virtual_network" "vnet" {
