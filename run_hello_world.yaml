@@ -1,11 +1,19 @@
-- hosts: all
-  become: yes
+---
+- name: Run Hello World Docker container
+  hosts: all
+  become: true
+
   tasks:
-    - name: Run Hello World container
-      docker_container:
+    - name: Pull Docker image
+      community.docker.docker_image:
+        name: semihamurcu66/hello-world
+        source: pull
+
+    - name: Run Docker container
+      community.docker.docker_container:
         name: hello-world
-        image: semihamurcu/hello-world:latest
+        image: semihamurcu66/hello-world
         state: started
-        restart_policy: unless-stopped
+        restart_policy: always
         ports:
           - "80:80"
