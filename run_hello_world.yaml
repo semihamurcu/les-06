@@ -1,0 +1,11 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Run Hello World container
+      docker_container:
+        name: hello-world
+        image: semihamurcu/hello-world:latest
+        state: started
+        restart_policy: unless-stopped
+        ports:
+          - "80:80"
