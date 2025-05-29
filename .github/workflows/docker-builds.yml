@@ -17,7 +17,8 @@ jobs:
       uses: docker/login-action@v2
       with:
         username: semihamurcu66
-        password: 8Df*UnuWp.Q5!TA
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
 
     - name: Build Docker image
       run: docker build -t semihamurcu/hello-world:latest .
