@@ -21,7 +21,7 @@ jobs:
 
 
     - name: Build Docker image
-      run: docker build -t semihamurcu/hello-world:latest ./docker-hello
+      run: docker build -t semihamurcu66/hello-world:latest ./docker-hello
 
     - name: Push Docker image to Docker Hub
-      run: docker push semihamurcu/hello-world:latest
+      run: docker push semihamurcu66/hello-world:latest
