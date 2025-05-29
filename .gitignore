@@ -1,0 +1,26 @@
+# Terraform lokale state-bestanden
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+
+# Externe modules
+.terraform/
+
+# Backup files
+*.backup
+
+# Sensitieve Terraform variabele bestanden
+terraform.tfvars
+terraform.tfvars.json
+
+# Override bestanden (optioneel)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuratie
+.terraformrc
+terraform.rc
