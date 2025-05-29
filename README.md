@@ -84,19 +84,3 @@ curl http://<VM-IP>
 
 
 
-### 📁 Projectstructuur
-
-les-06-1/
-├── docker-hello/
-│   └── Dockerfile
-├── install_docker.yaml
-├── run_hello_world.yaml
-├── main.tf
-├── providers.tf
-├── variables.tf
-├── terraform.tfvars
-├── terraform.tfstate
-├── terraform.tfstate.backup
-├── metadata.yaml.tftpl
-├── userdata.yaml
-└── README.md
