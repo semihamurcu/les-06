@@ -82,3 +82,30 @@ resource "azurerm_linux_virtual_machine" "azure_vm" {
     version   = "latest"
   }
 }
+
+# Output van IP-adressen
+output "esxi_vm_ip" {
+  value = esxi_guest.LAB6VM.ip_address
+}
+
+output "azure_vm_ip" {
+  value = azurerm_public_ip.public_ip.ip_address
+}
+
+# Ansible Inventory genereren
+resource "local_file" "ansible_inventory" {
+  depends_on = [
+    esxi_guest.LAB6VM,
+    azurerm_linux_virtual_machine.azure_vm
+  ]
+
+  content = <<EOF
+[esxi]
+LAB6VM ansible_host=${esxi_guest.LAB6VM.ip_address} ansible_user=testuser ansible_ssh_private_key_file=~/.ssh/devhostnieuw
+
+[azure]
+LAB6VM-Azure ansible_host=${azurerm_public_ip.public_ip.ip_address} ansible_user=testuser ansible_ssh_private_key_file=~/.ssh/devhostnieuw
+EOF
+
+  filename = "${path.module}/inventory.ini"
+}
