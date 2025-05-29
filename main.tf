@@ -7,9 +7,17 @@ resource "esxi_guest" "LAB6VM" {
   network_interfaces {
     virtual_network = "VM Network"          
   }
-}
+
 
 #Azure
+
+  guestinfo = {
+    "metadata"          = base64encode(templatefile("${path.module}/metadata.yaml.tftpl", { hostname = "LAB6VM" }))
+    "metadata.encoding" = "base64"
+    "userdata"          = filebase64("${path.module}/userdata.yaml")
+    "userdata.encoding" = "base64"
+  }
+}
 
 
 # Virtual Network
@@ -75,13 +83,14 @@ resource "azurerm_linux_virtual_machine" "azure_vm" {
     storage_account_type = "Standard_LRS"
   }
 
-  source_image_reference {
+source_image_reference {
     publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "24_04-lts"
+    offer     = "ubuntu-24_04-lts"
+    sku       = "server"
     version   = "latest"
   }
 }
+
 
 # Output van IP-adressen
 output "esxi_vm_ip" {
