@@ -1,4 +1,4 @@
-Testy3# Hybride Cloud Project - "Hello World" Docker CI/CD
+# Hybride Cloud Project - "Hello World" Docker CI/CD
 
 ## 📋 Inhoud
 1. [Overzicht](#overzicht)
