@@ -1,4 +1,6 @@
 # docker-hello/Dockerfile
-FROM alpine
-CMD ["echo", "Hello from hybrid cloud!"]
+FROM busybox
+WORKDIR /www
+RUN echo "Hello from hybrid cloud!" > index.html
+CMD ["httpd", "-f", "-p", "80"]
 
