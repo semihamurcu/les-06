@@ -32,8 +32,8 @@ In dit project zet ik een hybride cloudomgeving op met:
 
 ## 🔁 Projectflow
 
-1. **VM’s aanmaken** via Terraform (Azure & ESXi)  
-   → `main.tf`, `providers.tf`, `variables.tf`, `terraform.tfvars`, `metadata.yaml.tftpl`, `userdata.yaml`
+1. **VM’s aanmaken en ssh keys toevoegen** via Terraform en ansible (Azure & ESXi)  
+   → `main.tf`, `providers.tf`, `variables.tf`, `terraform.tfvars`, `metadata.yaml.tftpl`, `userdata.yaml`, `add_ssh_key_to_azure.yaml`
 
 2. **Docker installeren** met Ansible  
    → `install_docker.yaml`
@@ -67,6 +67,10 @@ Gebruik Terraform om de Azure en ESXi VM’s te deployen:
 
 terraform init
 terraform apply
+
+Gebruik Ansible om de keys op beide vm's te plaatsen
+
+ansible-playbook -i inventory.ini add_ssh_key_to_azure.yaml
 
 ### 🐧 Stap 2 - Docker installatie met Ansible
 ansible-playbook -i inventory.ini install_docker.yaml
