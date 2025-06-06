@@ -1,9 +1,19 @@
-# add_ssh_key_to_azure.yaml
-- name: Voeg devhostnieuw.pub toe aan Azure testuser
-  hosts: azure
+- name: Kopieer private key naar ESXi VM en voeg public key toe aan Azure VM
+  hosts: all
   become: true
   tasks:
-    - name: Voeg SSH key toe aan authorized_keys
+
+    - name: Kopieer private key naar ESXi VM
+      when: "'esxi' in group_names"
+      copy:
+        src: ~/.ssh/devhostnieuw
+        dest: /home/testuser/.ssh/devhostnieuw
+        owner: testuser
+        group: testuser
+        mode: '0600'
+
+    - name: Voeg SSH public key toe aan Azure VM authorized_keys
+      when: "'azure' in group_names"
       authorized_key:
         user: testuser
         key: "{{ lookup('file', '~/.ssh/devhostnieuw.pub') }}"

@@ -36,7 +36,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "ubuntu-public-ip"
   location            = var.location
   resource_group_name = var.resource_group_name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
   sku                 = "Basic"
 }
 
@@ -98,10 +98,11 @@ output "azure_vm_ip" {
 
 # Ansible Inventory genereren
 resource "local_file" "ansible_inventory" {
-  depends_on = [
-    esxi_guest.LAB6VM,
-    azurerm_linux_virtual_machine.azure_vm
-  ]
+ depends_on = [
+  esxi_guest.LAB6VM,
+  azurerm_linux_virtual_machine.azure_vm,
+  azurerm_public_ip.public_ip
+]
 
   content = <<EOF
 [esxi]
