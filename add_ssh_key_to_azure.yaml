@@ -1,0 +1,9 @@
+# add_ssh_key_to_azure.yaml
+- name: Voeg devhostnieuw.pub toe aan Azure testuser
+  hosts: azure
+  become: true
+  tasks:
+    - name: Voeg SSH key toe aan authorized_keys
+      authorized_key:
+        user: testuser
+        key: "{{ lookup('file', '~/.ssh/devhostnieuw.pub') }}"
