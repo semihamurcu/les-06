@@ -12,7 +12,6 @@ crash.log
 *.backup
 
 # Sensitieve Terraform variabele bestanden
-terraform.tfvars
 terraform.tfvars.json
 
 # Override bestanden (optioneel)
