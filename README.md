@@ -44,7 +44,7 @@ In dit project zet ik een hybride cloudomgeving op met:
 4. **Docker container draaien** op beide VM's met Ansible  
    → `run_hello_world.yaml`
 
-5. **Testen via browser of curl** op poort 80
+5. **Testen via SSH naar vm** sudo docker ps
 
 
 ---
@@ -93,8 +93,7 @@ De GitHub Actions pipeline:
 Workflow trigger: bij een push naar main.
 
 ## ✅ Testen
-Gebruik curl of je browser:
-curl http://<VM-IP>
-
+Inloggen bij een vm en gebruik de command
+sudo docker ps of sudo docker logs hello-world
 
 
