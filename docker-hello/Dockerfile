@@ -1,5 +1,5 @@
 # docker-hello/Dockerfile
 FROM alpine
-CMD ["echo", "Hallo Gerrit!"]
+CMD ["echo", "HELLO WORLD FROM SEMIH!"]
 
 
